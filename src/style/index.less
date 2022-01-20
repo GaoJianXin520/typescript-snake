@@ -1,0 +1,67 @@
+@bgc-stage: #9e9e9e;
+@bgc-border: #000000;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font: bold 20px "Courier";
+
+    #main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 40px;
+        border: 10px solid @bgc-border;
+        margin: 100px auto;
+        width: 360px;
+        height: 420px;
+        background-color: @bgc-stage;
+
+        #stage {
+            position: relative;
+            border: 2px solid @bgc-border;
+            width: 304px;
+            height: 304px;
+
+            #snake {
+                & > div {
+                    position: absolute;
+                    border: 1px solid @bgc-stage;
+                    width: 10px;
+                    height: 10px;
+                    background-color: @bgc-border;
+                }
+            }
+
+            #food {
+                position: absolute;
+                top: 100px;
+                left: 40px;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+                align-content: space-between;
+                width: 10px;
+                height: 10px;
+
+                & > div {
+                    width: 4px;
+                    height: 4px;
+                    background-color: @bgc-border;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+        #panel {
+            display: flex;
+            justify-content: space-between;
+            width: 304px;
+        }
+    }
+}
