@@ -1,17 +1,17 @@
 export default class Food {
-    private element: HTMLElement;  //食物所对应的元素
+    element: HTMLElement;  //食物所对应的元素
     
     constructor() {
         this.element = document.getElementById('food')!;
     }
 
     //获取食物的X轴坐标
-    get X() {
+    get x() {
         return this.element.offsetLeft;
     }
 
     //获取食物Y轴坐标
-    get Y() {
+    get y() {
         return this.element.offsetTop;
     }
 

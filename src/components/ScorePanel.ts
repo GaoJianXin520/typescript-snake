@@ -1,10 +1,10 @@
 export default class ScorePanel {
-    private score: number = 0;
-    private level: number = 0;
-    private maxLevel: number;  //最高等级
-    private upScore: number;  //升级阈值
-    private scoreEle: HTMLElement;
-    private levelEle: HTMLElement;
+    score: number = 0;
+    level: number = 0;
+    maxLevel: number;  //最高等级
+    upScore: number;  //升级阈值
+    scoreEle: HTMLElement;
+    levelEle: HTMLElement;
 
     constructor(maxLevel: number = 10, upScore: number = 10) {
         this.maxLevel = maxLevel;
