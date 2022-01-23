@@ -22,7 +22,7 @@ export default class ScorePanel {
     }
 
     //增加等级
-    protected addLevel() {
+    addLevel() {
         if (this.level < this.maxLevel) {
             this.levelEle.innerHTML = `${++this.level}`;
         }

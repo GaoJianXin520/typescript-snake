@@ -8,6 +8,7 @@ export default class GameControl {
     snake: Snake;
     direction: string = '';
     gameOver: boolean = false;
+    timeoutId: number = 0;
 
     constructor() {
         this.food = new Food();
@@ -22,7 +23,13 @@ export default class GameControl {
     }
 
     keydownHandler(e: KeyboardEvent) {
+        if (this.direction === 'ArrowUp' && e.key === 'ArrowDown' || this.direction === 'ArrowDown' && e.key === 'ArrowUp') return;
+        if (this.direction === 'ArrowRight' && e.key === 'ArrowLeft' || this.direction === 'ArrowLeft' && e.key === 'ArrowRight') return;
+        if (this.direction === 'Up' && e.key === 'Down' || this.direction === 'Down' && e.key === 'Up') return;
+        if (this.direction === 'Right' && e.key === 'Left' || this.direction === 'Left' && e.key === 'Right') return;
+
         this.direction = e.key;
+        clearTimeout(this.timeoutId);
         this.run();
     }
 
@@ -50,9 +57,26 @@ export default class GameControl {
                 break;
         }
 
-        this.snake.x = x;
-        this.snake.y = y;
+        this.checkEat(x, y);
 
-        !this.gameOver && setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
+        try {
+            this.snake.x = x;
+            this.snake.y = y;
+        } catch(e) {
+            alert(e);
+            this.gameOver = true;
+        }
+
+        if (!this.gameOver) {
+            this.timeoutId = setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30) as any;
+        }
+    }
+
+    checkEat(x: number, y: number) {
+        if (x === this.food.x && y === this.food.y) {
+            this.food.change();
+            this.scorePanel.addScore();
+            this.snake.add();
+        }
     }
 }

@@ -23,10 +23,8 @@ export default class Food {
          * 蛇移动一次是一格，食物的位置为10的倍数
          */
 
-        let stageEle = document.getElementById('stage')!;
-        let scoped = stageEle.clientWidth / 10 - 10;
-        let top = Math.round(Math.random() * scoped) * 10;
-        let left = Math.round(Math.random() * scoped) * 10;
+        let top = Math.round(Math.random() * 29) * 10;
+        let left = Math.round(Math.random() * 29) * 10;
 
         this.element.style.top = top + 'px';
         this.element.style.left = left + 'px';
